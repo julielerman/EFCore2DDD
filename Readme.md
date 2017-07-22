@@ -8,7 +8,7 @@ This code goes with my Sept 2017 MSDN Mag Data Points column about EF Core 2.0 f
  * Totally new support for backing fields  
  * and better encapsulation.  
 
-In the SimplerPatterns branch, the patterns are shown individually so you can comprehend what's happening in the domain classes and EF's DbContext.
+The patterns are shown individually so you can comprehend what's happening in the domain classes and EF's DbContext.
 
 In the PersonName value object type, note that EF Core *requires* that these fields be non-null, so I've added "empty" logic to hep accommodate for that.
 
