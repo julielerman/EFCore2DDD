@@ -2,6 +2,8 @@
 
 This code goes with my Sept 2017 MSDN Mag Data Points column about EF Core 2.0 features that help you build code using patterns from Domain-Driven Design. 
 
+When the article is available I will provide a link.
+
 
 * Better support for one:one mappings 
 * Support for value objects
