@@ -10,7 +10,7 @@ namespace SamuraiApp.Domain {
       SecretIdentity = PersonName.Empty ();
     }
 
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public string Name { get; private set; }
     #region demonstrates fully encap
     private readonly List<Quote> _quotes = new List<Quote> ();
