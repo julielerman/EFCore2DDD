@@ -31,15 +31,9 @@ namespace SamuraiApp.Domain {
     public string EntranceWithFieldScene => _entranceWithField?.SceneName;
 
     #endregion
-    #region demonstrates use of encapsulated value object, mapped in context as Owned Entity
-    private PersonName SecretIdentity { get; set; }
-    public string RevealSecretIdentity () {
-      if (SecretIdentity.IsEmpty ()) {
-        return "It's a secret";
-      } else {
-        return SecretIdentity.FullName ();
-      }
-    }
+    #region demonstrates use of  value object, mapped in context as Owned Entity
+    public PersonName SecretIdentity { get; private set; }
+    
     public void Identify (string first, string last) {
       SecretIdentity = PersonName.Create (first, last);
     }

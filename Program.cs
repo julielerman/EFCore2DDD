@@ -47,7 +47,7 @@ samurai.Identify("Sampson","Newfie");
         var samurais = context.Samurais.Include ("Entrance").ToList ();
         foreach (var samurai in samurais) {
           Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
-          Console.WriteLine ($"Secret Identity: {samurai.RevealSecretIdentity()}");
+          Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
 
         }
       }
@@ -76,7 +76,7 @@ samurai.Identify("Sampson","Newfie");
         var samurais = context.Samurais.Include ("EntranceWithField").ToList ();
         foreach (var samurai in samurais) {
           Console.WriteLine ($"{samurai.Name}, Enters in {samurai.EntranceWithFieldScene} ");
-          Console.WriteLine ($"Secret Identity: {samurai.RevealSecretIdentity()}");
+          Console.WriteLine ($"Secret Identity: {samurai.SecretIdentity.FullName()}");
 
         }
       }
