@@ -13,10 +13,10 @@ namespace SamuraiApp.Domain
       SceneName = sceneName;
       ActionDescription = description;
     }
-    public int Id { get; set; }
-    public int MovieMinute { get; set; }
-    public string SceneName { get; set; }
-    public string ActionDescription { get; set; }
-    public int SamuraiFK { get; set; }
+    public int Id { get; private set; }
+    public int MovieMinute { get; private set; }
+    public string SceneName { get; private set; }
+    public string ActionDescription { get; private set; }
+    public int SamuraiFK { get; private set; }
   }
 }

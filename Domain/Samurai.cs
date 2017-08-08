@@ -4,15 +4,20 @@ using System.Linq;
 
 namespace SamuraiApp.Domain {
   public class Samurai {
-
-    public Samurai () {
+   
+    public static Samurai Create (string name) {
+      return new Samurai (name);
+    }
+    private Samurai () {
       _quotes = new List<Quote> ();
       SecretIdentity = PersonName.Empty ();
     }
-
-    public int Id { get; set; }
+    public Samurai (string name) : base () {
+      Name = name;
+    }
+    public int Id { get; private set; }
     public string Name { get; private set; }
-    #region demonstrates fully encap
+    #region demonstrates fully encapsulated collection
     private readonly List<Quote> _quotes = new List<Quote> ();
 
     public IEnumerable<Quote> Quotes => _quotes.ToList ();
@@ -20,17 +25,17 @@ namespace SamuraiApp.Domain {
     public void AddQuote (Quote quote) {
       _quotes.Add (quote);
     }
-
-  #region demonstrates private 1:1 prop with backing field, note mapping in context file
+#endregion
+    #region demonstrates private 1:1 prop with backing field, note mapping in context file
     private Entrance _entrance;
     private Entrance Entrance { get { return _entrance; } }
     public void CreateEntrance (int minute, string sceneName, string description) {
       _entrance = Entrance.Create (minute, sceneName, description);
     }
     public string EntranceScene => _entrance?.SceneName;
-  #endregion
-  
-  #region demonstrates private value object with public methods to control how values are set and accessed
+    #endregion
+
+    #region demonstrates private value object with public methods to control how values are set and accessed
     private PersonName SecretIdentity { get; set; }
     public string RevealSecretIdentity () {
       if (SecretIdentity.IsEmpty ()) {
@@ -42,6 +47,6 @@ namespace SamuraiApp.Domain {
     public void Identify (string first, string last) {
       SecretIdentity = PersonName.Create (first, last);
     }
-  #endregion
+    #endregion
   }
 }

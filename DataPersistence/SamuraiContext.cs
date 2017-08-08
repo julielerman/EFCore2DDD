@@ -26,16 +26,16 @@ namespace SamuraiApp.Data {
       modelBuilder.Entity<Samurai> ()
         .HasOne (typeof (Entrance), "Entrance").WithOne ();
 
-      modelBuilder.Entity<Samurai> ()
-        .HasOne (typeof (EntranceWithField), "EntranceWithField")
-        .WithOne ().HasForeignKey (typeof (EntranceWithField), "SamuraiFK");
+      // modelBuilder.Entity<Samurai> ()
+  //       .HasOne (typeof (EntranceWithField), "EntranceWithField")
+  //       .WithOne ().HasForeignKey (typeof (EntranceWithField), "SamuraiFK");
 
       //note this has to come AFTER the hasone/withone config or the 
       //navigation won't be recognized yet
       modelBuilder.Entity<Samurai> ()
         .Metadata
-        .FindNavigation ("EntranceWithField")
-        .SetField ("_entranceField");
+        .FindNavigation ("Entrance")
+        .SetField ("_entrance");
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes ()) {
         //LastModified is a shadow property, not props in the classes
