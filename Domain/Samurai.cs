@@ -1,40 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SamuraiApp.Domain {
   public class Samurai {
 
     public Samurai () {
-      Quotes = new List<Quote> ();
-      SecretIdentity=PersonName.Empty();
+      _quotes = new List<Quote> ();
+      SecretIdentity = PersonName.Empty ();
     }
 
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public List<Quote> Quotes { get; set; }
+    public int Id { get; private set; }
+    public string Name { get; private set; }
+    #region demonstrates fully encap
+    private readonly List<Quote> _quotes = new List<Quote> ();
 
-    #region demonstrates private 1:1 prop with no backing field, note mapping in context file
-    private Entrance Entrance { get; set; }
+    public IEnumerable<Quote> Quotes => _quotes.ToList ();
+
+    public void AddQuote (Quote quote) {
+      _quotes.Add (quote);
+    }
+
+  #region demonstrates private 1:1 prop with backing field, note mapping in context file
+    private Entrance _entrance;
+    private Entrance Entrance { get { return _entrance; } }
     public void CreateEntrance (int minute, string sceneName, string description) {
-      Entrance = new Entrance (minute, sceneName, description);
+      _entrance = Entrance.Create (minute, sceneName, description);
     }
-      public string EntranceScene => Entrance?.SceneName;
-
-    #endregion
-
-    #region demonstrates private 1:1 prop with backing field, note mapping in context file
-    private EntranceWithField _entranceField;
-    private EntranceWithField EntranceWithField { get{return _entranceField;} }
-    public void CreateEntranceWithField (int minute, string sceneName, string description) {
-      _entranceField = new EntranceWithField (minute, sceneName, description);
-    }
-    public string EntranceWithFieldScene => _entranceField?.SceneName;
-
-    #endregion
-#if true
-    private PersonName SecretIdentity {get;set;} 
+    public string EntranceScene => _entrance?.SceneName;
+  #endregion
+  
+  #region demonstrates private value object with public methods to control how values are set and accessed
+    private PersonName SecretIdentity { get; set; }
     public string RevealSecretIdentity () {
-      if (SecretIdentity.IsEmpty()) {
+      if (SecretIdentity.IsEmpty ()) {
         return "It's a secret";
       } else {
         return SecretIdentity.FullName ();
@@ -43,6 +42,6 @@ namespace SamuraiApp.Domain {
     public void Identify (string first, string last) {
       SecretIdentity = PersonName.Create (first, last);
     }
-#endif
+  #endregion
   }
 }

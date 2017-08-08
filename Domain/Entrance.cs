@@ -5,17 +5,21 @@ namespace SamuraiApp.Domain
 
   public class Entrance
   {
-    public Entrance() { }
-    public Entrance(int movieMinute, string sceneName, string description)
+    private Entrance() { } //needed by ORM
+    private Entrance(int movieMinute, string sceneName, string description)
     {
       MovieMinute = movieMinute;
       SceneName = sceneName;
       ActionDescription = description;
     }
-    public int Id { get; set; }
-    public int MovieMinute { get; set; }
-    public string SceneName { get; set; }
-    public string ActionDescription { get; set; }
-    public int SamuraiId { get; set; }
+public static Entrance Create(int movieMinute, string sceneName, string description)
+    {
+      return new Entrance(movieMinute,sceneName,description);
+    }
+    public int Id { get; private set; }
+    public int MovieMinute { get; private set; }
+    public string SceneName { get; private set; }
+    public string ActionDescription { get; private set; }
+    public int SamuraiId { get; private set; }
   }
 }
