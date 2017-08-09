@@ -6,12 +6,8 @@ using SamuraiApp.Domain;
 namespace SamuraiApp.Data {
   public class SamuraiContext : DbContext {
 
-    public SamuraiContext (DbContextOptions<SamuraiContext> options) : base (options) {
-
-    }
-    public SamuraiContext () {
-
-    }
+    public SamuraiContext (DbContextOptions<SamuraiContext> options) : base (options) { }
+    public SamuraiContext () { }
     public DbSet<Samurai> Samurais { get; set; }
     public DbSet<Quote> Quotes { get; set; }
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
@@ -23,7 +19,7 @@ namespace SamuraiApp.Data {
       //Note that we need to configure the model
       //to know about entrance 
       //before running the code that depends on GetEntityTypes
-      
+
       modelBuilder.Entity<Samurai> ()
         .HasOne (typeof (Entrance), "Entrance")
         .WithOne ().HasForeignKey (typeof (Entrance), "SamuraiFK");
