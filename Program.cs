@@ -24,8 +24,7 @@ namespace Data_Points_0917_EFCore2Model {
       // ListSamuraisWithEntranceBackingAndIdentity();
     }
     static void StoreNewSamuraiWithEntrance () {
-      var samurai = new Samurai("Julie" );
-
+      var samurai =  Samurai.Create("Julie" );
       samurai.CreateEntrance (1, "S1", "Here I am!");
       using (var context = new SamuraiContext ()) {
         context.Samurais.Add (samurai);
@@ -34,7 +33,7 @@ namespace Data_Points_0917_EFCore2Model {
     }
 
     static void StoreNewSamuraiWithEntranceAndIdentity () {
-      var samurai = new Samurai( "Giantpuppy" );
+      var samurai =  Samurai.Create( "Giantpuppy" );
 samurai.Identify("Sampson","Newfie");
       samurai.CreateEntrance (2, "S2", "Woof!");
       using (var context = new SamuraiContext ()) {

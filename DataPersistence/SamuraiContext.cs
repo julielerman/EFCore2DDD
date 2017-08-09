@@ -21,14 +21,12 @@ namespace SamuraiApp.Data {
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
 
       //Note that we need to configure the model
-      //to know about entrance and entrancewithfield
+      //to know about entrance 
       //before running the code that depends on GetEntityTypes
+      
       modelBuilder.Entity<Samurai> ()
-        .HasOne (typeof (Entrance), "Entrance").WithOne ();
-
-      // modelBuilder.Entity<Samurai> ()
-  //       .HasOne (typeof (EntranceWithField), "EntranceWithField")
-  //       .WithOne ().HasForeignKey (typeof (EntranceWithField), "SamuraiFK");
+        .HasOne (typeof (Entrance), "Entrance")
+        .WithOne ().HasForeignKey (typeof (Entrance), "SamuraiFK");
 
       //note this has to come AFTER the hasone/withone config or the 
       //navigation won't be recognized yet

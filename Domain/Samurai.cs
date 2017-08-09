@@ -12,7 +12,7 @@ namespace SamuraiApp.Domain {
       _quotes = new List<Quote> ();
       SecretIdentity = PersonName.Empty ();
     }
-    public Samurai (string name) : base () {
+    private Samurai (string name) : this() {
       Name = name;
     }
     public int Id { get; private set; }
