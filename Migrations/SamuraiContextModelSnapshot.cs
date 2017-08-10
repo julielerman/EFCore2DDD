@@ -11,10 +11,9 @@ using System;
 namespace DataPoints0917EFCore2Model.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20170722144032_init")]
-    partial class init
+    partial class SamuraiContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,30 +30,7 @@ namespace DataPoints0917EFCore2Model.Migrations
 
                     b.Property<int>("MovieMinute");
 
-                    b.Property<int>("SamuraiId");
-
-                    b.Property<string>("SceneName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId")
-                        .IsUnique();
-
-                    b.ToTable("Entrance");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.EntranceWithField", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ActionDescription");
-
-                    b.Property<DateTime>("LastModified");
-
-                    b.Property<int>("MovieMinute");
-
-                    b.Property<int>("SamuraiFK");
+                    b.Property<int?>("SamuraiFK");
 
                     b.Property<string>("SceneName");
 
@@ -63,7 +39,7 @@ namespace DataPoints0917EFCore2Model.Migrations
                     b.HasIndex("SamuraiFK")
                         .IsUnique();
 
-                    b.ToTable("EntranceWithField");
+                    b.ToTable("Entrance");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>
@@ -102,16 +78,7 @@ namespace DataPoints0917EFCore2Model.Migrations
                 {
                     b.HasOne("SamuraiApp.Domain.Samurai")
                         .WithOne("Entrance")
-                        .HasForeignKey("SamuraiApp.Domain.Entrance", "SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.EntranceWithField", b =>
-                {
-                    b.HasOne("SamuraiApp.Domain.Samurai")
-                        .WithOne("EntranceWithField")
-                        .HasForeignKey("SamuraiApp.Domain.EntranceWithField", "SamuraiFK")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SamuraiApp.Domain.Entrance", "SamuraiFK");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>

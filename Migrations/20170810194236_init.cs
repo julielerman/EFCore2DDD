@@ -33,41 +33,18 @@ namespace DataPoints0917EFCore2Model.Migrations
                     ActionDescription = table.Column<string>(type: "TEXT", nullable: true),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     MovieMinute = table.Column<int>(type: "INTEGER", nullable: false),
-                    SamuraiId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SamuraiFK = table.Column<int>(type: "INTEGER", nullable: true),
                     SceneName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Entrance", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entrance_Samurais_SamuraiId",
-                        column: x => x.SamuraiId,
-                        principalTable: "Samurais",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EntranceWithField",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ActionDescription = table.Column<string>(type: "TEXT", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MovieMinute = table.Column<int>(type: "INTEGER", nullable: false),
-                    SamuraiFK = table.Column<int>(type: "INTEGER", nullable: false),
-                    SceneName = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EntranceWithField", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EntranceWithField_Samurais_SamuraiFK",
+                        name: "FK_Entrance_Samurais_SamuraiFK",
                         column: x => x.SamuraiFK,
                         principalTable: "Samurais",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,14 +69,8 @@ namespace DataPoints0917EFCore2Model.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entrance_SamuraiId",
+                name: "IX_Entrance_SamuraiFK",
                 table: "Entrance",
-                column: "SamuraiId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntranceWithField_SamuraiFK",
-                table: "EntranceWithField",
                 column: "SamuraiFK",
                 unique: true);
 
@@ -113,9 +84,6 @@ namespace DataPoints0917EFCore2Model.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Entrance");
-
-            migrationBuilder.DropTable(
-                name: "EntranceWithField");
 
             migrationBuilder.DropTable(
                 name: "Quotes");

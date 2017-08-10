@@ -23,6 +23,6 @@ public static Entrance Create(int movieMinute, string sceneName, string descript
     
     //demonstrates unconventional FK name. Note mapping in context 
     //for the 1:1 relationship to sort this out
-    public int SamuraiFk { get; private set; }
+   // public int SamuraiFk { get; private set; }
   }
 }

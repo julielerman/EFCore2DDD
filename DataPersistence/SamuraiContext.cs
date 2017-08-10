@@ -17,7 +17,7 @@ namespace SamuraiApp.Data {
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
 
       //Note that we need to configure the model
-      //to know about entrance 
+      //to know about private entrance 
       //before running the code that depends on GetEntityTypes
 
       modelBuilder.Entity<Samurai> ()
