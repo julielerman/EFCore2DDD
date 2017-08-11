@@ -55,7 +55,6 @@ namespace Data_Points_0917_EFCore2Model
         {
           Console.WriteLine($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
           Console.WriteLine($"Secret Identity: {samurai.RevealSecretIdentity()}");
-
         }
       }
     }

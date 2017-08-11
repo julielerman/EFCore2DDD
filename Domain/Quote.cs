@@ -1,15 +1,19 @@
-﻿namespace SamuraiApp.Domain {
+﻿using System;
+
+namespace SamuraiApp.Domain {
   public class Quote {
-    public static Quote Create (string text, int samuraiId) {
-      return new Quote (text, samuraiId);
+    public static Quote Create (Guid samuraiGuidId,string text) {
+      return new Quote (samuraiGuidId,text);
     }
-    private Quote (string text, int samuraiId) {
+    private Quote (Guid samuraiGuidId,string text) {
       Text = text;
-      SamuraiId = SamuraiId;
+      SamuraiGuidId=samuraiGuidId;
     }
     private Quote () { } //ORM requires paramterless ctor
     public int Id { get; private set; }
     public string Text { get; private set; }
     public int SamuraiId { get; private set; }
+    public Guid SamuraiGuidId{get;private set;}
+ 
   }
 }
