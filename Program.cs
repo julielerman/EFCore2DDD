@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Data;
 using SamuraiApp.Domain;
@@ -54,6 +55,12 @@ namespace Data_Points_0917_EFCore2Model
         foreach (var samurai in samurais)
         {
           Console.WriteLine($"{samurai.Name}, Enters in {samurai.EntranceScene} ");
+          BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+        | BindingFlags.Static;
+  
+          var myPropInfo = samurai.GetType().GetField("_entrance",bindFlags);
+          var myValue = myPropInfo.GetValue(samurai);
+          Console.WriteLine($"SamuraiGuid: {samurai.GuidId}, E.SG: {myValue}");
           Console.WriteLine($"Secret Identity: {samurai.RevealSecretIdentity()}");
         }
       }
