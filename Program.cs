@@ -19,16 +19,14 @@ namespace Data_Points_0917_EFCore2Model
       StoreNewSamuraiWithEntrance();
       StoreNewSamuraiWithEntranceAndIdentity();
       ListSamuraisWithEntranceAndIdentity();
-      using (var context = new SamuraiContext())
-      {
-        context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
-      }
+     
     }
     static void StoreNewSamuraiWithEntrance()
     {
       var samurai = Samurai.Create("Julie");
-      samurai.CreateEntrance(1, "S1", "Here I am!");
+      samurai.CreateEntrance(1, "S1", "Tumbles off a roof");
+      samurai.AddQuote("Ouch!");
+      samurai.AddQuote("That hurt!");
       using (var context = new SamuraiContext())
       {
         context.Samurais.Add(samurai);
@@ -40,7 +38,7 @@ namespace Data_Points_0917_EFCore2Model
     {
       var samurai = Samurai.Create("Giantpuppy");
       samurai.Identify("Sampson", "Newfie");
-      samurai.CreateEntrance(2, "S2", "Woof!");
+      samurai.CreateEntrance(2, "S2", "Walks in on all fours");
       using (var context = new SamuraiContext())
       {
         context.Samurais.Add(samurai);

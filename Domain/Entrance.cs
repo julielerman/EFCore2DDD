@@ -20,7 +20,7 @@ namespace SamuraiApp.Domain {
 
     //demonstrates unconventional FK name. Note mapping in context 
     //for the 1:1 relationship to sort this out
-    public int SamuraiFk { get; private set; }
+    private int SamuraiFk { get;  set; }
     public Guid SamuraiGuidId{get;private set;}
   }
 }
