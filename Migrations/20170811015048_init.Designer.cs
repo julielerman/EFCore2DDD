@@ -11,7 +11,7 @@ using System;
 namespace DataPoints0917EFCore2Model.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20170810194236_init")]
+    [Migration("20170811015048_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,13 +31,13 @@ namespace DataPoints0917EFCore2Model.Migrations
 
                     b.Property<int>("MovieMinute");
 
-                    b.Property<int?>("SamuraiFK");
+                    b.Property<int>("SamuraiFk");
 
                     b.Property<string>("SceneName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SamuraiFK")
+                    b.HasIndex("SamuraiFk")
                         .IsUnique();
 
                     b.ToTable("Entrance");
@@ -79,7 +79,8 @@ namespace DataPoints0917EFCore2Model.Migrations
                 {
                     b.HasOne("SamuraiApp.Domain.Samurai")
                         .WithOne("Entrance")
-                        .HasForeignKey("SamuraiApp.Domain.Entrance", "SamuraiFK");
+                        .HasForeignKey("SamuraiApp.Domain.Entrance", "SamuraiFk")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>

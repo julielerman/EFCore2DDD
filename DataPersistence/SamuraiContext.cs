@@ -22,7 +22,7 @@ namespace SamuraiApp.Data {
 
       modelBuilder.Entity<Samurai> ()
         .HasOne (typeof (Entrance), "Entrance")
-        .WithOne ().HasForeignKey (typeof (Entrance), "SamuraiFK");
+        .WithOne ().HasForeignKey(typeof (Entrance), "SamuraiFk");
 
       //note this has to come AFTER the hasone/withone config or the 
       //navigation won't be recognized yet

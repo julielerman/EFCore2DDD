@@ -33,18 +33,18 @@ namespace DataPoints0917EFCore2Model.Migrations
                     ActionDescription = table.Column<string>(type: "TEXT", nullable: true),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     MovieMinute = table.Column<int>(type: "INTEGER", nullable: false),
-                    SamuraiFK = table.Column<int>(type: "INTEGER", nullable: true),
+                    SamuraiFk = table.Column<int>(type: "INTEGER", nullable: false),
                     SceneName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Entrance", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entrance_Samurais_SamuraiFK",
-                        column: x => x.SamuraiFK,
+                        name: "FK_Entrance_Samurais_SamuraiFk",
+                        column: x => x.SamuraiFk,
                         principalTable: "Samurais",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,9 +69,9 @@ namespace DataPoints0917EFCore2Model.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entrance_SamuraiFK",
+                name: "IX_Entrance_SamuraiFk",
                 table: "Entrance",
-                column: "SamuraiFK",
+                column: "SamuraiFk",
                 unique: true);
 
             migrationBuilder.CreateIndex(
