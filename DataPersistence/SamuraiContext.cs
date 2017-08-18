@@ -11,7 +11,8 @@ namespace SamuraiApp.Data {
     public DbSet<Samurai> Samurais { get; set; }
     public DbSet<Quote> Quotes { get; set; }
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
-      optionsBuilder.UseSqlite ("Filename=DP0917Samurai.db");
+     // optionsBuilder.UseSqlite ("Filename=DP0917Samurai.db");
+      optionsBuilder.UseInMemoryDatabase("onedb");
       base.OnConfiguring (optionsBuilder);
     }
     protected override void OnModelCreating (ModelBuilder modelBuilder) {
@@ -23,13 +24,6 @@ namespace SamuraiApp.Data {
       modelBuilder.Entity<Samurai> ()
         .HasOne (typeof (Entrance), "Entrance")
         .WithOne ().HasForeignKey(typeof (Entrance), "SamuraiFk");
-
-      //note this has to come AFTER the hasone/withone config or the 
-      //navigation won't be recognized yet
-      // modelBuilder.Entity<Samurai> ()
-      //   .Metadata
-      //   .FindNavigation ("Entrance")
-      //   .SetField ("_entrance");
 
       foreach (var entityType in modelBuilder.Model.GetEntityTypes ()) {
         //LastModified is a shadow property, not props in the classes

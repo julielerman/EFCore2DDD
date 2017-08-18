@@ -12,7 +12,7 @@ namespace SamuraiApp.Domain {
     private Quote () { } //ORM requires paramterless ctor
     public int Id { get; private set; }
     public string Text { get; private set; }
-    public int SamuraiId { get; private set; }
+    private int SamuraiId { get;  set; }
     public Guid SamuraiGuidId{get;private set;}
  
   }

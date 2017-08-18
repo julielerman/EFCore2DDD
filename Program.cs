@@ -16,10 +16,20 @@ namespace Data_Points_0917_EFCore2Model
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
       }
+      StoreNewSamuraiWithNoEntrance();
       StoreNewSamuraiWithEntrance();
       StoreNewSamuraiWithEntranceAndIdentity();
       ListSamuraisWithEntranceAndIdentity();
      
+    }
+     static void StoreNewSamuraiWithNoEntrance()
+    {
+      var samurai = Samurai.Create("InvisibleMan");
+      using (var context = new SamuraiContext())
+      {
+        context.Samurais.Add(samurai);
+        context.SaveChanges();
+      }
     }
     static void StoreNewSamuraiWithEntrance()
     {

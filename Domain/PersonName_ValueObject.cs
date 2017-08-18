@@ -1,4 +1,5 @@
 ﻿using JimmyBogardRocks;
+//source: http://grabbagoft.blogspot.com/2007/06/generic-value-object-equality.html
 
 namespace SamuraiApp.Domain {
   public class PersonName : ValueObject<PersonName> {
