@@ -3,10 +3,8 @@ using System;
 namespace SamuraiApp.Domain {
 
   public class Entrance {
-    public static Entrance Create (Guid samuraiGuidId,int movieMinute, string sceneName, string description) {
-      return new Entrance (samuraiGuidId,movieMinute, sceneName, description);
-    }
-    private Entrance (Guid samuraiGuidId,int movieMinute, string sceneName, string description) {
+  
+    public Entrance (Guid samuraiGuidId,int movieMinute, string sceneName, string description) {
       MovieMinute = movieMinute;
       SceneName = sceneName;
       ActionDescription = description;

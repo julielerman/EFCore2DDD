@@ -2,10 +2,7 @@
 
 namespace SamuraiApp.Domain {
   public class Quote {
-    public static Quote Create (Guid samuraiGuidId,string text) {
-      return new Quote (samuraiGuidId,text);
-    }
-    private Quote (Guid samuraiGuidId,string text) {
+     public Quote (Guid samuraiGuidId,string text) {
       Text = text;
       SamuraiGuidId=samuraiGuidId;
     }
