@@ -15,7 +15,7 @@ namespace SamuraiApp.Domain {
     }
     private Samurai () {
       _quotes = new List<Quote> ();
-      SecretIdentity = PersonName.Empty ();
+      SecretIdentity = PersonFullName.Empty ();
     }
     public int Id { get; private set; }
     public Guid GuidId{get;private set;}
@@ -27,7 +27,7 @@ namespace SamuraiApp.Domain {
     public IEnumerable<Quote> Quotes => _quotes.ToList ();
 
     public void AddQuote (string quoteText) {
-      _quotes.Add (Quote.Create(GuidId,quoteText));
+      _quotes.Add (new Quote(GuidId,quoteText));
       IsDirty=true;
     }
   
@@ -36,14 +36,14 @@ namespace SamuraiApp.Domain {
     private Entrance _entrance;
     private Entrance Entrance { get { return _entrance; } }
     public void CreateEntrance (int minute, string sceneName, string description) {
-      _entrance = Entrance.Create (GuidId, minute, sceneName, description);
+      _entrance = new Entrance (GuidId, minute, sceneName, description);
       IsDirty=true;
     }
     public string EntranceScene => _entrance?.SceneName;
     #endregion
 
     #region demonstrates private value object with public methods to control how values are set and accessed
-    private PersonName SecretIdentity { get; set; }
+    private PersonFullName SecretIdentity { get; set; }
     public string RevealSecretIdentity () {
       if (SecretIdentity.IsEmpty ()) {
         return "It's a secret";
@@ -52,7 +52,7 @@ namespace SamuraiApp.Domain {
       }
     }
     public void Identify (string first, string last) {
-      SecretIdentity = PersonName.Create (first, last);
+      SecretIdentity = PersonFullName.Create (first, last);
       IsDirty=true;
     }
     #endregion

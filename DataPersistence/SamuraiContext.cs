@@ -32,7 +32,7 @@ namespace SamuraiApp.Data {
         modelBuilder.Entity (entityType.Name).Ignore ("IsDirty");
       }
       //NOTE: owned entity needs to go after the GetEntityTypes or it will be seen as an entity
-      modelBuilder.Entity<Samurai> ().OwnsOne (typeof (PersonName), "SecretIdentity");
+      modelBuilder.Entity<Samurai> ().OwnsOne (typeof (PersonFullName), "SecretIdentity");
 
     }
 
@@ -41,7 +41,7 @@ namespace SamuraiApp.Data {
         .Where (e => e.State == EntityState.Added ||
           e.State == EntityState.Modified)) {
         //ignore owned entities (todo: is there a generic way?)
-        if (!(entry.Entity is PersonName))
+        if (!(entry.Entity is PersonFullName))
           entry.Property ("LastModified").CurrentValue = DateTime.Now;
       }
       return base.SaveChanges ();

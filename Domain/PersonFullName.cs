@@ -2,15 +2,15 @@
 //source: http://grabbagoft.blogspot.com/2007/06/generic-value-object-equality.html
 
 namespace SamuraiApp.Domain {
-  public class PersonName : ValueObject<PersonName> {
+  public class PersonFullName : ValueObject<PersonFullName> {
 
-    public static PersonName Create (string first, string last) {
-      return new PersonName (first, last);
+    public static PersonFullName Create (string first, string last) {
+      return new PersonFullName (first, last);
     }
-    public static PersonName Empty () {
-      return new PersonName (null, null);
+    public static PersonFullName Empty () {
+      return new PersonFullName (null, null);
     }
-    private PersonName () { }
+    private PersonFullName () { }
 
     public bool IsEmpty () {
       if (string.IsNullOrEmpty (First) && string.IsNullOrEmpty (Last)) {
@@ -19,7 +19,7 @@ namespace SamuraiApp.Domain {
         return false;
       }
     }
-    private PersonName (string first, string last) {
+    private PersonFullName (string first, string last) {
       First = first;
       Last = last;
     }
