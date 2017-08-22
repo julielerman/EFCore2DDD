@@ -5,10 +5,8 @@ using System.Linq;
 namespace SamuraiApp.Domain {
   public class Samurai {
    
-    public static Samurai Create (string name) {
-      return new Samurai (name);
-    }
-    private Samurai (string name) : this() {
+    
+    public Samurai (string name) : this() {
       Name = name;
       GuidId=Guid.NewGuid();
       IsDirty=true;
