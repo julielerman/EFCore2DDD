@@ -24,7 +24,7 @@ namespace Data_Points_0917_EFCore2Model
     }
      static void StoreNewSamuraiWithNoEntrance()
     {
-      var samurai = Samurai.Create("InvisibleMan");
+      var samurai = new Samurai("InvisibleMan");
       using (var context = new SamuraiContext())
       {
         context.Samurais.Add(samurai);
@@ -33,7 +33,7 @@ namespace Data_Points_0917_EFCore2Model
     }
     static void StoreNewSamuraiWithEntrance()
     {
-      var samurai = Samurai.Create("Julie");
+      var samurai = new Samurai("Julie");
       samurai.CreateEntrance(1, "S1", "Tumbles off a roof");
       samurai.AddQuote("Ouch!");
       samurai.AddQuote("That hurt!");
@@ -46,7 +46,7 @@ namespace Data_Points_0917_EFCore2Model
 
     static void StoreNewSamuraiWithEntranceAndIdentity()
     {
-      var samurai = Samurai.Create("Giantpuppy");
+      var samurai = new Samurai("Giantpuppy");
       samurai.Identify("Sampson", "Newfie");
       samurai.CreateEntrance(2, "S2", "Walks in on all fours");
       using (var context = new SamuraiContext())
@@ -66,9 +66,10 @@ namespace Data_Points_0917_EFCore2Model
           BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
         | BindingFlags.Static;
   
-          var myPropInfo = samurai.GetType().GetField("_entrance",bindFlags);
-          var myValue = myPropInfo.GetValue(samurai);
-          Console.WriteLine($"SamuraiGuid: {samurai.GuidId}, E.SG: {myValue}");
+          var entrancePropInfo = samurai.GetType().GetField("_entrance",bindFlags);
+          var entranceObject = entrancePropInfo.GetValue(samurai);
+          var guidValue=entranceObject?.GetType().GetProperty("SamuraiGuidId").GetValue(entranceObject);
+                  Console.WriteLine($"SamuraiGuid: {samurai.GuidId}, E.SG: {guidValue}");
           Console.WriteLine($"Secret Identity: {samurai.RevealSecretIdentity()}");
         }
       }
