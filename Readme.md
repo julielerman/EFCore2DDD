@@ -1,4 +1,4 @@
-**EFCore2 DDD Advanced Patterns**
+**EFCore2 DDD Advanced Patterns with Guids**
 
 This  advanced branch combines the various features (one:one, value objects, better encapsulation, backing field support).
 
